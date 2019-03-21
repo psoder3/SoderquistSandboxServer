@@ -55,6 +55,9 @@ app.get('/unoAIHadden', function(req,res){
 app.get('/scumAIHunter', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../Front End/scumAIHunter.html'));
 });
+app.get('/dvd', function(req,res){
+	res.sendFile(path.resolve(__dirname + '/../Front End/DVDmove.html'));
+});
 
 app.get('/Uno_Card_Script.js', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../Front End/Uno_Card_Script.js'));
