@@ -115,6 +115,7 @@ function incrementHitCountOnFile()
 
 app.get('/', function(req,res){
 	numPageHits += 1;
+	console.log(new Date());
 	console.log("Number of times the page has been visited since server was last restarted");
 	console.log(numPageHits);
 	incrementHitCountOnFile();
