@@ -78,6 +78,21 @@ app.get('/oddOrEven/:number', function(req,res) {
 		});
 	}	
 });
+app.get('/Potition/:number', function(req,res) {
+	if (req.params.number % 2 == 0)
+	{
+		res.send({
+			result: 'even'
+		});
+	}
+	else
+	{
+		res.send({
+			result: 'odd'
+		});
+	}	
+});
+
 
 function incrementHitCountOnFile()
 {
