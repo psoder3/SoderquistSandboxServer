@@ -7,6 +7,7 @@ var config = require('./config/config.js'), // import config variables
 
 
 var numPageHits = 0;
+var NumberofPeople = 0;
 
 app.use(express.static(path.join(__dirname, 'public'))); // this middleware serves static files, such as .js, .img, .css files
 
@@ -78,19 +79,12 @@ app.get('/oddOrEven/:number', function(req,res) {
 		});
 	}	
 });
-app.get('/Potition/:number', function(req,res) {
-	if (req.params.number % 2 == 0)
-	{
+app.get('/Potition', function(req,res) {
+	NumberofPeople ++;
 		res.send({
-			var hi = 'even';
+			result: NumberofPeople;
+		
 		});
-	}
-	else
-	{
-		res.send({
-			var hi = 'Odd';
-		});
-	}	
 });
 
 
