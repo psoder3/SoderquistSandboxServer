@@ -82,13 +82,13 @@ app.get('/Potition/:number', function(req,res) {
 	if (req.params.number % 2 == 0)
 	{
 		res.send({
-			result: 'even'
+			var hi = 'even';
 		});
 	}
 	else
 	{
 		res.send({
-			result: 'odd'
+			var hi = 'Odd';
 		});
 	}	
 });
