@@ -82,7 +82,7 @@ app.get('/oddOrEven/:number', function(req,res) {
 app.get('/Potition', function(req,res) {
 	NumberofPeople ++;
 		res.send({
-			result: NumberofPeople;
+			result: NumberofPeople
 		
 		});
 });
