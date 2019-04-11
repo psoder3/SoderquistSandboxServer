@@ -7,7 +7,7 @@ var config = require('./config/config.js'), // import config variables
 
 
 var numPageHits = 0;
-var NumberofPeople = 0;
+var MasterPaperlist = [];
 
 app.use(express.static(path.join(__dirname, 'public'))); // this middleware serves static files, such as .js, .img, .css files
 
@@ -79,12 +79,28 @@ app.get('/oddOrEven/:number', function(req,res) {
 		});
 	}	
 });
-app.get('/Potition', function(req,res) {
-	NumberofPeople ++;
-		res.send({
-			result: NumberofPeople
+app.get('/Potition/:Gridlist', function(req,res) {
+	if(Gridlist == 5){
+	   		res.send({
+			result: MasterPaperlist
 		
 		});
+	   
+	   }else{
+		if(MasterPaperlist == []){   
+		   MasterPaperlist = Gridlist;
+		   }else{
+			for(var i = 0; i < 200; i++){   
+			   for(var j = 0; j < 200; j++){
+				   if(!(MasterPaperlist[i][j] == Gridlist[i][j])){
+				      	MasterPaperlist[i][j] = Gridlist[i][j]
+				      }
+			   }
+			}	
+		   }
+	   }
+
+
 });
 
 
