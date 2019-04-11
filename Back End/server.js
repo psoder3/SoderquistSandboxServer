@@ -81,6 +81,7 @@ app.get('/oddOrEven/:number', function(req,res) {
 });
 app.get('/Potition/:Gridlist', function(req,res) {
 	var parsedGridlist = req.params.Gridlist;
+	var QuaryGridlist = req.query.Gridlist;
 	console.log(parsedGridlist);
 	if(parsedGridlist == 3){
 	   MasterPaperlist = [];	
@@ -94,12 +95,12 @@ app.get('/Potition/:Gridlist', function(req,res) {
 	   
 	   }else{
 		if(MasterPaperlist.length == 0){   
-		   MasterPaperlist = parsedGridlist;
+		   MasterPaperlist = QuaryGridlist;
 		   }else{
 			for(var i = 0; i < 200; i++){   
 			   for(var j = 0; j < 200; j++){
-				   if(!(MasterPaperlist[i][j] == parsedGridlist[i][j])){
-				      	MasterPaperlist[i][j] = parsedGridlist[i][j]
+				   if(!(MasterPaperlist[i][j] == QuaryGridlist[i][j])){
+				      	MasterPaperlist[i][j] = QuaryGridlist[i][j]
 				      }
 			   }
 			}	
