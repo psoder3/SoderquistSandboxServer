@@ -98,8 +98,8 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 
 });
 app.post('/Potition/gridsend', function(req,res) {
-	console.log(req.query);
-	var QuaryGridlist = JSON.parse(req.query);
+	console.log(req.params);
+	var QuaryGridlist = JSON.parse(req.params);
 		if(MasterPaperlist.length == 0){   
 		   MasterPaperlist = QuaryGridlist;
 		   }else{
