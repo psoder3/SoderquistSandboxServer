@@ -79,9 +79,9 @@ app.get('/oddOrEven/:number', function(req,res) {
 		});
 	}	
 });
-app.get('/Potition/:Gridlist', function(req,res) {
+app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	var parsedGridlist = req.params.Gridlist;
-	var QuaryGridlist = req.query.Gridlist;
+	
 	console.log(parsedGridlist);
 	if(parsedGridlist == 3){
 	   MasterPaperlist = [];	
@@ -93,7 +93,12 @@ app.get('/Potition/:Gridlist', function(req,res) {
 		
 		});
 	   
-	   }else{
+	   }
+
+
+});
+app.get('/Potition/gridsend/:Gridlist', function(req,res) {
+	var parsedGridlist = req.query.Gridlist;
 		if(MasterPaperlist.length == 0){   
 		   MasterPaperlist = QuaryGridlist;
 		   }else{
@@ -105,12 +110,8 @@ app.get('/Potition/:Gridlist', function(req,res) {
 			   }
 			}	
 		   }
-	   }
-
-
+	   
 });
-
-
 function incrementHitCountOnFile()
 {
 	var hits;
