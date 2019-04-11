@@ -81,7 +81,7 @@ app.get('/oddOrEven/:number', function(req,res) {
 });
 app.get('/Potition/:Gridlist', function(req,res) {
 	var parsedGridlist = req.params.Gridlist;
-	console.log(parsedGridList);
+	console.log(parsedGridlist);
 	if(parsedGridlist == 3){
 	   MasterPaperlist = [];	
 	   
