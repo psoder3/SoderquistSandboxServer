@@ -7,7 +7,7 @@ var config = require('./config/config.js'), // import config variables
 
 var myParser = require("body-parser");
 var numPageHits = 0;
-var MasterPaperlist;
+var MasterPaperlist = [];
 
 app.use(express.static(path.join(__dirname, 'public'))); // this middleware serves static files, such as .js, .img, .css files
 
@@ -82,11 +82,11 @@ app.get('/oddOrEven/:number', function(req,res) {
 app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	var parsedGridlist = req.params.Gridlist;
 	
-	console.log(MasterPaperlist);
+	
 	if(parsedGridlist == 5){
 
 
-
+			
 				    for (var i = 0; i < 200; i++) {
 					var rowlist = [];
 					for (var j = 0; j < 200; j++) {
@@ -94,21 +94,12 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 					    rowlist.push(pixel);
 					}
 					MasterPaperlist.push(rowlist);
+					console.log(MasterPaperlist);
 				    }
 
-
-
-				function createpixelclass(j, i) {
-
-				    this.X = j;
-				    this.Y = i;
-				    this.div;
-				    this.color = 'white';
-					this.player;
-					this.motion;
-
-					   }
-					}
+		
+			
+				
 	if(parsedGridlist == 5){
 	   		res.send({
 			result: MasterPaperlist
@@ -119,6 +110,17 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 
 
 });
+function createpixelclass(j, i) {
+
+this.X = j;
+this.Y = i;
+this.div;
+this.color = 'white';
+this.player;
+this.motion;
+
+   }
+}
 app.use(myParser.urlencoded({extended : true}));
 app.post('/Potition/gridsend', function(req,res) {
 	console.log(req.body);
