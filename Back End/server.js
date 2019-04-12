@@ -100,7 +100,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 app.use(myParser.urlencoded({extended : true}));
 app.post('/Potition/gridsend', function(req,res) {
 	console.log(req.body);
-	/*var QuaryGridlist = JSON.parse(req.body);
+	var QuaryGridlist = JSON.parse(req.body);
 		if(MasterPaperlist.length == 0){   
 		   MasterPaperlist = QuaryGridlist;
 		   }else{
@@ -111,7 +111,7 @@ app.post('/Potition/gridsend', function(req,res) {
 				      }
 			   }
 			}	
-		   }*/
+		   }
 	   
 });
 function incrementHitCountOnFile()
