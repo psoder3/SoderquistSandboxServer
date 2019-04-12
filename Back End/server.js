@@ -82,7 +82,7 @@ app.get('/oddOrEven/:number', function(req,res) {
 app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	var parsedGridlist = req.params.Gridlist;
 	
-	console.log(parsedGridlist);
+	console.log(MasterPaperlist);
 	if(MasterPaperlist == 5){
 
 
