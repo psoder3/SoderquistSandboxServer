@@ -7,7 +7,7 @@ var config = require('./config/config.js'), // import config variables
 
 var myParser = require("body-parser");
 var numPageHits = 0;
-var MasterPaperlist = [];
+var MasterPaperlist;
 
 app.use(express.static(path.join(__dirname, 'public'))); // this middleware serves static files, such as .js, .img, .css files
 
@@ -83,7 +83,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	var parsedGridlist = req.params.Gridlist;
 	
 	console.log(MasterPaperlist);
-	if(MasterPaperlist == 5){
+	if(parsedGridlist == 5){
 
 
 
