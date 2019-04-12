@@ -83,10 +83,32 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	var parsedGridlist = req.params.Gridlist;
 	
 	console.log(parsedGridlist);
-	if(parsedGridlist == 3){
-	   MasterPaperlist = [];	
-	   
-	   }
+	if(MasterPaperlist == 5){
+
+
+
+				    for (var i = 0; i < 200; i++) {
+					var rowlist = [];
+					for (var j = 0; j < 200; j++) {
+					    var pixel = new createpixelclass(j, i);
+					    rowlist.push(pixel);
+					}
+					MasterPaperlist.push(rowlist);
+				    }
+
+
+
+				function createpixelclass(j, i) {
+
+				    this.X = j;
+				    this.Y = i;
+				    this.div;
+				    this.color = 'white';
+					this.player;
+					this.motion;
+
+					   }
+					}
 	if(parsedGridlist == 5){
 	   		res.send({
 			result: MasterPaperlist
