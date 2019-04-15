@@ -83,7 +83,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	var parsedGridlist = req.params.Gridlist;
 	
 	
-	if(parsedGridlist == 5){
+	if(MasterPaperlist.length == 0){
 
 
 			
@@ -119,7 +119,7 @@ this.color = 'white';
 this.player;
 this.motion;
 
-   }
+   
 }
 app.use(myParser.urlencoded({extended : true}));
 app.post('/Potition/gridsend', function(req,res) {
