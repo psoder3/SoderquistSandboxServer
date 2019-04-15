@@ -8,7 +8,7 @@ var config = require('./config/config.js'), // import config variables
 var myParser = require("body-parser");
 var numPageHits = 0;
 var MasterPaperlist = [];
-
+var Listofchange = [];
 app.use(express.static(path.join(__dirname, 'public'))); // this middleware serves static files, such as .js, .img, .css files
 
 // Initialize server
@@ -100,13 +100,28 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 		
 	}	
 				
-	if(parsedGridlist == 5){
+	if(parsedGridlist == 3){
 	   		res.send({
 			MasterPaperlist
 		
 		});
 	   
 	   }
+	var ListofColor = [];
+	for(var i = 0; i < 200; i++){
+	for(var j = 0; j < 200; j++){
+		if(!(MastPaperlist[j][i].color = 'white')){
+		   	var ListofColor.push(MastPaperlist[j][i].color);
+		   }
+		
+	}
+	}
+	if(parsedGridlist == 5){
+		res.send({
+			ListofColor	
+		});
+		
+	}
 
 
 });
@@ -123,19 +138,12 @@ this.motion;
 }
 app.use(myParser.urlencoded({extended : true}));
 app.post('/Potition/gridsend', function(req,res) {
-	console.log(req.body);
-	var QuaryGridlist = JSON.parse(req.body);
-		if(MasterPaperlist.length == 0){   
-		   MasterPaperlist = QuaryGridlist;
-		   }else{
-			for(var i = 0; i < 200; i++){   
-			   for(var j = 0; j < 200; j++){
-				   if(!(MasterPaperlist[i][j] == QuaryGridlist[i][j])){
-				      	MasterPaperlist[i][j] = QuaryGridlist[i][j]
-				      }
-			   }
-			}	
-		   }
+	var listofClientColorlist = JSON.parse(req.body);
+	var listofClientColor = listofClientColorlist['listtosend'];
+	for(var i = 0; i < listofClientColor; i++){
+		MasterPaperlist[listofClientColor[i].Y][listofClientColor[i].X] = listofClientColor[i];		
+	}
+	
 	   
 });
 function incrementHitCountOnFile()
