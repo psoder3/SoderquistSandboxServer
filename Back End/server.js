@@ -94,7 +94,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 					    rowlist.push(pixel);
 					}
 					MasterPaperlist.push(rowlist);
-					console.log(MasterPaperlist);
+					
 				    }
 
 		
