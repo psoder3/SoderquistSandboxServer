@@ -111,7 +111,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	for(var i = 0; i < 200; i++){
 	for(var j = 0; j < 200; j++){
 		if(!(MastPaperlist[j][i].color = 'white')){
-		   	var ListofColor.push(MastPaperlist[j][i].color);
+		   	ListofColor.push(MastPaperlist[j][i].color);
 		   }
 		
 	}
