@@ -138,12 +138,7 @@ this.motion;
 }
 app.use(myParser.urlencoded({extended : true}));
 app.post('/Potition/gridsend', function(req,res) {
-	var listofClientColorlist = JSON.parse(req.body);
-	var listofClientColor = listofClientColorlist['listtosend'];
-	for(var i = 0; i < listofClientColor.length; i++){
-		MasterPaperlist[listofClientColor[i].Y][listofClientColor[i].X] = listofClientColor[i];		
-	}
-	
+	Listofchange.push(JSON.parse(req.body));
 	   
 });
 function incrementHitCountOnFile()
