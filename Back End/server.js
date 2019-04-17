@@ -108,17 +108,10 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	   
 	   }
 	var ListofColor = [];
-	for(var i = 0; i < 200; i++){
-	for(var j = 0; j < 200; j++){
-		if(!(MastPaperlist[j][i].color = 'white')){
-		   	ListofColor.push(MastPaperlist[j][i].color);
-		   }
-		
-	}
-	}
+	
 	if(parsedGridlist == 5){
 		res.send({
-			ListofColor	
+			Listofchange
 		});
 		
 	}
@@ -138,7 +131,22 @@ this.motion;
 }
 app.use(myParser.urlencoded({extended : true}));
 app.post('/Potition/gridsend', function(req,res) {
-	Listofchange.push(JSON.parse(req.body));
+	var data = JSON.parse(req.body);
+	var inlist = false;
+	
+	for(var i = 0; i < Listofchange.length; i++){
+		if(Listofchange[i].color == data.color){
+		   Listofchange[i] = data;
+			inlist = true;
+		   }
+	}
+
+	if(!inlist){
+	   	Listofchange.push(data);
+	   }
+
+	
+	
 	   
 });
 function incrementHitCountOnFile()
