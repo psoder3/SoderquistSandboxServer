@@ -110,9 +110,9 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	var ListofColor = [];
 	
 	if(parsedGridlist == 5){
-		res.send({
+		res.send(JSON.stringify({
 			'Listofchange':Listofchange
-		});
+		}));
 		
 	}
 
@@ -131,8 +131,8 @@ this.motion;
 }
 app.use(myParser.urlencoded({extended : true}));
 app.post('/Potition/gridsend', function(req,res) {
-	console.log(req.body);
-	var data = req.body;
+	console.log(JSON.parse(req.body));
+	var data = JSON.parse(req.body);
 	var inlist = false;
 	
 	for(var i = 0; i < Listofchange.length; i++){
@@ -146,7 +146,7 @@ app.post('/Potition/gridsend', function(req,res) {
 	   	Listofchange.push(data);
 	   }
 
-	
+	res.send({"result":"hi"});
 	
 	   
 });
