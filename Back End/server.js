@@ -131,6 +131,7 @@ this.motion;
 }
 app.use(myParser.urlencoded({extended : true}));
 app.post('/Potition/gridsend', function(req,res) {
+	console.log(req.body);
 	var data = JSON.parse(req.body);
 	var inlist = false;
 	
