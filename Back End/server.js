@@ -102,7 +102,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 				
 	if(parsedGridlist == 3){
 	   		res.send({
-			MasterPaperlist
+			'MasterPaperlist':MasterPaperlist
 		
 		});
 	   
