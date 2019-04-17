@@ -111,7 +111,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	
 	if(parsedGridlist == 5){
 		res.send({
-			Listofchange
+			'Listofchange':Listofchange
 		});
 		
 	}
