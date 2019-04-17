@@ -5,7 +5,7 @@ var config = require('./config/config.js'), // import config variables
   app = express(),                          // create the server using express
   path = require('path');                   // utility module
 
-var myParser = require("body-parser");
+var bodyParser = require("body-parser");
 var numPageHits = 0;
 var MasterPaperlist = [];
 var Listofchange = [];
