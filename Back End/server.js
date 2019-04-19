@@ -138,7 +138,10 @@ app.post('/Potition/gridsend', function(req,res) {
 	var inlist = false;
 	
 	for(var i = 0; i < Listofchange.length; i++){
-		if(Listofchange[i].color == data.color){
+		if(Listofchange[i].Isdead){
+		   Listofchange.splice(i,1);
+			inlist = true;
+		   }else if(Listofchange[i].color == data.color){
 		   Listofchange[i] = data;
 			inlist = true;
 		   }
