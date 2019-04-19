@@ -104,7 +104,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	if(parsedGridlist == 3){
 		console.log(Listofchange);
 	   		res.send({
-			'MasterPaperlist':MasterPaperlist
+			'MasterPaperlist':Listofchange
 		
 		});
 	   
