@@ -110,6 +110,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	var ListofColor = [];
 	
 	if(parsedGridlist == 5){
+		console.log(Listofchange);
 		res.send({
 			'Listofchange':Listofchange
 		});
