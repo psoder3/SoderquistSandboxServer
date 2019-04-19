@@ -99,11 +99,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 
 		
 	}
-	if(parsedGridlist == 2){
-	   	MasterPaperlist = [];
-		Listofchange = [];
-	   
-	   }
+	
 				
 	if(parsedGridlist == 3){
 	   		res.send({
