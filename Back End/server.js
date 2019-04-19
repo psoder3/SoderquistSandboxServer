@@ -87,9 +87,9 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 
 
 			
-				    for (var i = 0; i < 200; i++) {
+				    for (var i = 0; i < 100; i++) {
 					var rowlist = [];
-					for (var j = 0; j < 200; j++) {
+					for (var j = 0; j < 100; j++) {
 					    var pixel = new createpixelclass(j, i);
 					    rowlist.push(pixel);
 					}
