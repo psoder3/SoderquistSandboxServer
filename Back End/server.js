@@ -100,7 +100,13 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 		
 	}
 	
-				
+	if(parsedGridlist == 2){
+	
+		var MasterPaperlist = [];
+                var Listofchange = [];
+	   
+	   
+	   }			
 	if(parsedGridlist == 3){
 		console.log("option 3");
 		console.log(Listofchange);
@@ -110,6 +116,8 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 		});
 	   
 	   }
+
+
 	var ListofColor = [];
 	
 	if(parsedGridlist == 5){
