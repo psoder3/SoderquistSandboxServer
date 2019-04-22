@@ -110,7 +110,7 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	if(parsedGridlist == 3){
 		console.log("option 3");
 		console.log(Listofchange);
-		console.log(MasterPaperlist);
+		//console.log(MasterPaperlist);
 	   		res.send({
 			'MasterPaperlist':[{val:'I'},{val:'hope'},{val:'this'},{val:'works'}]
 			//'MasterPaperlist':MasterPaperlist
