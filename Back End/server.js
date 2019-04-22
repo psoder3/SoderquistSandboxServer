@@ -102,8 +102,8 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	
 	if(parsedGridlist == 2){
 	
-		MasterPaperlist = [];
-                Listofchange = [];
+		MasterPaperlist = []; // I changed this from (it used to start with var) - Soderquist
+                Listofchange = []; // I changed this from (it used to start with var) - Soderquist
 	   
 	   
 	   }			
@@ -112,8 +112,8 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 		console.log(Listofchange);
 		//console.log(MasterPaperlist);
 	   		res.send({
-			'MasterPaperlist':[{val:'I'},{val:'hope'},{val:'this'},{val:'works'}]
-			//'MasterPaperlist':MasterPaperlist
+			//'MasterPaperlist':[{val:'I'},{val:'hope'},{val:'this'},{val:'works'}]
+			'MasterPaperlist':MasterPaperlist
 		
 		});
 	   
