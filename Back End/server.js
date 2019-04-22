@@ -112,7 +112,8 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 		console.log(Listofchange);
 		console.log(MasterPaperlist);
 	   		res.send({
-			'MasterPaperlist':MasterPaperlist
+			'MasterPaperlist':[{val:'I'},{val:'hope'},{val:'this'},{val:'works'}]
+			//'MasterPaperlist':MasterPaperlist
 		
 		});
 	   
