@@ -102,8 +102,8 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	
 	if(parsedGridlist == 2){
 	
-		var MasterPaperlist = [];
-                var Listofchange = [];
+		MasterPaperlist = [];
+                Listofchange = [];
 	   
 	   
 	   }			
