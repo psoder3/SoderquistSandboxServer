@@ -152,7 +152,20 @@ app.post('/Potition/gridsend', function(req,res) {
 	var inlist = false;
 	
 	for(var i = 0; i < Listofchange.length; i++){
-		if(Listofchange[i].Isdead){
+		  if(event.timeStamp-data.TimeStamp > 10){
+		   	Listofchange.splice(i,1);
+			  inlist = true;
+		for(var i = 0; i < 200; i++){
+			for(var j = 0; j < 200; j++){
+				if(MasterPaperlist[i][j].color == Mycolor){
+					MasterPaperlist[i][j].color = 'white';
+					MasterPaperlist[i][j].motion = false;
+					MasterPaperlist[i][j].player = false;
+
+				}
+			}
+			}
+		   }else if(Listofchange[i].Isdead){
 		   Listofchange.splice(i,1);
 			inlist = true;
 		   }else if(Listofchange[i].color == data.color){
