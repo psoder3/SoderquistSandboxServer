@@ -152,7 +152,7 @@ app.post('/Potition/gridsend', function(req,res) {
 	var inlist = false;
 	
 	for(var i = 0; i < Listofchange.length; i++){
-		  if(event.timeStamp-data.TimeStamp > 10){
+		  if(Date.now-data.TimeStamp > 10){
 		   	Listofchange.splice(i,1);
 			  inlist = true;
 		for(var i = 0; i < 200; i++){
