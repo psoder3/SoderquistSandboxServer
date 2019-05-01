@@ -199,7 +199,7 @@ app.get('/mozz/gridrecive/:Gridlist', function(req,res) {
 
 });
 app.post('/mozz/gridsend', function(req,res) {
-	console.log(req.body);
+
 	var data = req.body;
 	var inlist = false;
 	for(var i = 0; i < MozzListofchange.length; i++){
@@ -207,6 +207,7 @@ app.post('/mozz/gridsend', function(req,res) {
 		  	MozzListofchange.splice(i,1);
 			inlist = true;
 		   }else if(MozzListofchange[i].Id == data.Id){
+			   console.log(data.Id);
 		   MozzListofchange[i] = data;
 			inlist = true;
 		   }
