@@ -8,7 +8,9 @@ var config = require('./config/config.js'), // import config variables
 var bodyParser = require("body-parser");
 var numPageHits = 0;
 var MasterPaperlist = [];
-var Listofchange = [];
+var PaperListofchange = [];
+var MozzListofchange = [];
+var globalid = 0;
 app.use(express.static(path.join(__dirname, 'public'))); // this middleware serves static files, such as .js, .img, .css files
 
 // Initialize server
@@ -128,9 +130,9 @@ app.get('/Potition/gridrecive/:Gridlist', function(req,res) {
 	var ListofColor = [];
 	
 	if(parsedGridlist == 5){
-		console.log(Listofchange);
+		console.log(PaperListofchange);
 		res.send({
-			'Listofchange':Listofchange
+			'Listofchange':PaperListofchange
 		});
 		
 	}
@@ -156,9 +158,9 @@ app.post('/Potition/gridsend', function(req,res) {
 	var data = req.body;
 	var inlist = false;
 	
-	for(var i = 0; i < Listofchange.length; i++){
+	for(var i = 0; i < PaperListofchange.length; i++){
 		  if(Date.now-data.TimeStamp > 10){
-		   	Listofchange.splice(i,1);
+		   	PaperListofchange.splice(i,1);
 			  inlist = true;
 		for(var i = 0; i < 200; i++){
 			for(var j = 0; j < 200; j++){
@@ -170,11 +172,11 @@ app.post('/Potition/gridsend', function(req,res) {
 				}
 			}
 			}
-		   }else if(Listofchange[i].Isdead){
-		   Listofchange.splice(i,1);
+		   }else if(PaperListofchange[i].Isdead){
+		   PaperListofchange.splice(i,1);
 			inlist = true;
-		   }else if(Listofchange[i].color == data.color){
-		   Listofchange[i] = data;
+		   }else if(PaperListofchange[i].color == data.color){
+		   PaperListofchange[i] = data;
 			inlist = true;
 		   }
 	}
@@ -187,6 +189,38 @@ app.post('/Potition/gridsend', function(req,res) {
 	
 	   
 });
+
+//Mossta
+app.get('/mozz/gridrecive/:Gridlist', function(req,res) {
+	var parsedGridlist = req.params.Gridlist;
+	res.send({
+			'Listofchange':MozzListofchange
+	});
+
+});
+app.post('/mozz/gridsend', function(req,res) {
+	console.log(req.body);
+	var data = req.body;
+	for(var i = 0; i < MozzListofchange.length; i++){
+		 if(MozzListofchange[i].Isdead){
+		  	MozzListofchange.splice(i,1);
+			inlist = true;
+		   }else if(MozzListofchange[i].Id == data.Id){
+		   MozzListofchange[i] = data;
+			inlist = true;
+		   }
+	}
+
+	if(!inlist){
+		data.Id = globalid;
+		globalid++;
+	   	MozzListofchange.push(data);
+	   }
+
+	res.send({"result":"hi"});
+});
+
+//Mossta
 function incrementHitCountOnFile()
 {
 	var hits;
