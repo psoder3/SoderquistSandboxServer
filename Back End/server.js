@@ -64,6 +64,11 @@ app.get('/Uno_Card_Script.js', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../Front End/Uno_Card_Script.js'));
 });
 
+app.get('/mozzimage/:filename', function(req,res) {
+	var filename = req.params.filename;
+	res.sendFile(path.resolve(__dirname + '/../Front End/Images/'+filename));
+});
+
 
 app.get('/oddOrEven/:number', function(req,res) {
 	if (req.params.number % 2 == 0)
