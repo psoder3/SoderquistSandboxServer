@@ -201,6 +201,7 @@ app.get('/mozz/gridrecive/:Gridlist', function(req,res) {
 app.post('/mozz/gridsend', function(req,res) {
 	console.log(req.body);
 	var data = req.body;
+	var inlist = false;
 	for(var i = 0; i < MozzListofchange.length; i++){
 		 if(MozzListofchange[i].Isdead){
 		  	MozzListofchange.splice(i,1);
