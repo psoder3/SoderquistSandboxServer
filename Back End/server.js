@@ -207,12 +207,12 @@ app.post('/mozz/gridsend', function(req,res) {
 		  	MozzListofchange.splice(i,1);
 			inlist = true;
 		   }else if(MozzListofchange[i].Id == data.Id){
-			   console.log(data.Id);
+			   
 		   MozzListofchange[i] = data;
 			inlist = true;
 		   }
 	}
-
+	console.log(data.Id);
 	if(!inlist){
 		data.Id = globalid;
 		globalid++;
