@@ -197,6 +197,7 @@ app.get('/mozz/gridrecive/:Gridlist', function(req,res) {
 	
 	if(parsedGridlist == 3){
 		MozzListofchange = [];
+		globalid = 0;
 	}
 	
 	res.send({
