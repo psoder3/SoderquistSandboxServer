@@ -192,7 +192,13 @@ app.post('/Potition/gridsend', function(req,res) {
 
 //Mossta
 app.get('/mozz/gridrecive/:Gridlist', function(req,res) {
+	
 	var parsedGridlist = req.params.Gridlist;
+	
+	if(parsedGridlist == 3){
+		MozzListofchange = [];
+	}
+	
 	res.send({
 			'Listofchange':MozzListofchange
 	});
