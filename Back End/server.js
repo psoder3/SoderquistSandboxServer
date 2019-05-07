@@ -199,10 +199,11 @@ app.get('/mozz/gridrecive/:Gridlist', function(req,res) {
 		MozzListofchange = [];
 		globalid = 0;
 	}
-	
+	if(parsedGridlist == 5){
 	res.send({
 			'Listofchange':MozzListofchange
 	});
+	}
 
 });
 app.post('/mozz/gridsend', function(req,res) {
