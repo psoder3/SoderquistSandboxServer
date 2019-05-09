@@ -211,7 +211,7 @@ app.post('/mozz/gridsend', function(req,res) {
 	var data = req.body;
 	var inlist = false;
 	for(var i = 0; i < MozzListofchange.length; i++){
-		 if(Date.now - data.TimeStamp > 10){
+		 if(Date.now() - data.TimeStamp > 150){
 		 	MozzListofchange.splice(i,1);
 			inlist = true;
 		 }else if(MozzListofchange[i].Isdead){
