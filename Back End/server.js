@@ -215,6 +215,7 @@ app.post('/mozz/gridsend', function(req,res) {
 	var inlist = false;
 	for(var i = 0; i < MozzListofchange.length; i++){
 		 if(Date.now() - data.TimeStamp > 150){
+			 console.log("Found time");
 		 	MozzListofchange.splice(i,1);
 			inlist = true;
 		 }else if(MozzListofchange[i].Isdead){
@@ -226,7 +227,7 @@ app.post('/mozz/gridsend', function(req,res) {
 			inlist = true;
 		   }
 	}
-	console.log(data.Id);
+
 	if(!inlist){
 		data.Id = globalid;
 		globalid++;
