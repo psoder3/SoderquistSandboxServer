@@ -1,0 +1,306 @@
+<html>
+
+    <script>
+    var arenaTotalWidth = 2000;
+    var arenaTotalHeight = 2000;
+    var SizeOfCharacterInPX = 150;
+    var Arena;
+    var character;
+    var CharImg;
+    var timeoutDelay = 100;
+    var characterPositionRelativeToArenaX = 200;
+    var characterPositionRelativeToArenaY = 400;
+
+    var backgroundWidth = 300;
+    var backgroundHeight = 300;
+
+    var numBackgroundColumns = arenaTotalWidth/backgroundWidth;
+    var numBackgroundRows = arenaTotalHeight/backgroundHeight;
+    var Listofpeople
+    var MyId = null;
+    var clearseverlist = false;
+    var listofplayers = [];
+    /*Code by Hadden Smith, Hunter Kjar, and Spencer Hobert*/
+    /*Artwork and Inspiration by Caden Espindola, and Jayden Lintz*/
+
+
+      window.onload = function() { //Title Screen Where we can choose charictor
+        //var startScreen = document.getElementById('startScreen');
+        Arena = document.getElementById('Arena');
+        character = document.getElementById("character");
+        CharImg = document.getElementById('charimg');
+        //startScreen.style.width = window.innerWidth;
+        //startScreen.style.height = window.innerHeight;
+        //startScreen.style.top = "0px";
+      //  startScreen.style.left = "0px";
+
+        //startScreen.style.display = "none";
+        StartGame();
+      }
+  //anHttpRequest for HttpClient
+  var HttpClient = function() {
+	this.get = function(aUrl, aCallback) {
+		var anHttpRequest = new XMLHttpRequest();
+		anHttpRequest.onreadystatechange = function() {
+			if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200) // used to be gridsize, needs to be 200
+				aCallback(anHttpRequest.responseText);
+		}
+		anHttpRequest.open( "GET", aUrl, true );
+		anHttpRequest.send( null );
+	}
+
+	this.post = function(aUrl, jsonObj, aCallback) {
+
+		var stringObj = JSON.stringify(jsonObj);
+
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			aCallback(xhttp.responseText);
+
+		}
+	  };
+	  xhttp.open("POST", aUrl, true);
+	   xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+		xhttp.send(stringObj);
+	  }
+	}
+//end of anHttpRequest
+
+      function StartGame() {
+	  Stop:{
+        if(clearseverlist){
+          var client = new HttpClient();
+              client.get('http://10.65.1.197:8000/mozz/gridrecive/3', function(response) {
+
+              });
+			break Stop;
+        }
+        window.addEventListener("keypress", Move, false);
+	      window.onkeydown = Move;
+        //document.getElementById("startScreen").style.display = "none";                   UNCCOMMENT ME ONCE DONE WITH STARTING SCREEN
+
+        for (var i = 0; i < numBackgroundRows; i++) {
+          for (var j = 0; j < numBackgroundColumns; j++) {
+            var tile = document.createElement('img');
+            tile.style.position = "absolute";
+            tile.id = (j+'-'+i);
+            tile.src ="http://10.65.1.197:8000/mozzimage/Map.png";
+            tile.style.left = (j * backgroundWidth) - characterPositionRelativeToArenaX;
+            tile.style.top = (i * backgroundHeight) - characterPositionRelativeToArenaY;
+            tile.style.zIndex = -2;
+            Arena.appendChild(tile);
+          }
+        }
+
+        character.style.position = "absolute";
+        character.style.width = SizeOfCharacterInPX + "px";
+        character.style.height = SizeOfCharacterInPX + "px";
+        CharImg.style.width = SizeOfCharacterInPX + "px";
+        CharImg.style.height = SizeOfCharacterInPX + "px";
+        CharImg.src = "http://10.65.1.197:8000/mozzimage/Mozzarela_Man.png";
+
+        UpdateandCallsever();
+		}
+      }
+
+      function UpdateandCallsever(){ //Put code to pull from server and update users screen
+
+        //Pulling code
+
+
+        var client = new HttpClient();
+		var time = Date.now();
+		console.log(Date.now());
+        var wrappedObj = {'Id':MyId,'TimeStamp':time,'Size':SizeOfCharacterInPX,'X':characterPositionRelativeToArenaX,'Y':characterPositionRelativeToArenaY,'Isdead':false,'pic':"http://10.65.1.197:8000/mozzimage/Mozzarela_Man.png"};
+        			client.post('http://10.65.1.197:8000/mozz/gridsend',wrappedObj, function(response) {
+                client.get('http://10.65.1.197:8000/mozz/gridrecive/5', function(response) {
+					
+                    var Mycallback = JSON.parse(response);
+                    Listofpeople = Mycallback['Listofchange'];
+
+                    if(MyId == null){
+                      console.log(Mycallback['Listofchange']);
+                    MyId = Mycallback['Listofchange'][Mycallback['Listofchange'].length - 1].Id;
+                  }
+
+                /*  for(var i = 0; i < Listofpeople.length; i++){
+                    if(!(Listofpeople[i].Id == MyId)){
+                    var leftegde = characterPositionRelativeToArenaX - (window.innerWidth/2);
+                    var topegde = characterPositionRelativeToArenaY - (window.innerHeight/2);
+                    var rightegde = characterPositionRelativeToArenaX + (window.innerWidth/2);
+                    var bottomegde = characterPositionRelativeToArenaY + (window.innerHeight/2);
+                      if((Listofpeople[i].list[0] >= leftegde && Listofpeople[i].list[0] <= rightegde) && (Listofpeople[i].list[1] >= topegde && Listofpeople[i].list[1] <= bottomegde)){
+
+
+                      }
+                    }
+                  }*/
+
+
+
+                  
+                  //create arena after called server
+                  Arena.style.width = window.innerWidth;
+                  Arena.style.height = window.innerHeight;
+                  character.style.left = ((window.innerWidth / 2) - (SizeOfCharacterInPX/2)) + "px";
+                  character.style.top =  ((window.innerHeight / 2) - (SizeOfCharacterInPX/2)) + "px";
+                  for (var i = 0; i < numBackgroundRows; i++) {
+                    for (var j = 0; j < numBackgroundColumns; j++) {
+                      var tile = document.getElementById(j+'-'+i);
+                      tile.style.left = (j * backgroundWidth) - characterPositionRelativeToArenaX;
+                      tile.style.top = (i * backgroundHeight) - characterPositionRelativeToArenaY;
+                    }
+                  }
+				  
+				  for(var i = 0; i < Listofpeople.length; i++){
+					
+					var person = Listofpeople[i];
+					if(MyId != person.Id){
+					var charwindowX = window.innerWidth/2 + ((person.X) - characterPositionRelativeToArenaX);
+					var charwindowY = window.innerHeight/2 + ((person.Y) - characterPositionRelativeToArenaY);
+					if((charwindowX > -200 && charwindowX < window.innerWidth + 200)
+					&& (charwindowY > -200 && charwindowY < window.innerHeight + 200)
+					){
+					var charDiv = document.getElementById(person.Id);
+					if (charDiv == undefined || charDiv == null)
+					{
+						charDiv = document.createElement('img');
+						Arena.appendChild(charDiv);
+						console.log("create");
+					}
+					charDiv.style.position = "absolute";
+					charDiv.id = (person.Id);
+					charDiv.src = person.pic;
+					charDiv.style.width = SizeOfCharacterInPX + "px";
+					charDiv.style.height = SizeOfCharacterInPX + "px";
+					charDiv.style.left = (charwindowX - (charDiv.width/2)) + "px";
+					charDiv.style.top = (charwindowY - (charDiv.height/2)) + "px";
+					
+
+					//charDiv.style.top = (person.Y) - characterPositionRelativeToArenaY;
+					charDiv.style.zIndex = 2;
+					
+					
+					}
+					}
+
+					}
+                  //end of create arean
+
+                    setTimeout(function(){
+                					UpdateandCallsever();
+                				},timeoutDelay);
+                });
+        });
+      }
+
+      var counter = 0;
+      function Move(event){
+        if ((event.key).toLowerCase() == "w" || event.keyCode == 38){
+          characterPositionRelativeToArenaY-=3;
+          if (characterPositionRelativeToArenaY < -394){
+            characterPositionRelativeToArenaY+=3;
+          }
+
+        }
+		    if ((event.key).toLowerCase() == "a" || event.keyCode == 37){
+          characterPositionRelativeToArenaX-=3;
+          if (characterPositionRelativeToArenaX < -934){
+            characterPositionRelativeToArenaX+=3;
+          }
+
+        }
+		    if ((event.key).toLowerCase() == "s" || event.keyCode == 40){
+          characterPositionRelativeToArenaY+=3;
+          if (characterPositionRelativeToArenaY > 1556){
+            characterPositionRelativeToArenaY-=3;
+          }
+
+        }
+		    if ((event.key).toLowerCase() == "d" || event.keyCode == 39){
+          characterPositionRelativeToArenaX+=3;
+          if (characterPositionRelativeToArenaX > 1118){
+            characterPositionRelativeToArenaX-=3;
+          }
+
+        }
+
+        if (counter == 0){
+          CharImg.src = "http://10.65.1.197:8000/mozzimage/Mozzarela_Man_Walking.gif";
+        }
+
+        console.log(characterPositionRelativeToArenaX + ", " + characterPositionRelativeToArenaY);
+      }
+
+    </script>
+<!--For Button-->
+<style>
+  body{
+    text-align:center;
+  }
+  body:before{
+    content:'';
+    height:100%;
+    display:inline-block;
+    vertical-align:middle;
+  }
+  button{
+    background:#1AAB8A;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  button:hover{
+    background:#fff;
+    color:#1AAB8A;
+  }
+  button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all;
+  }
+  button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+</style>
+
+  <body>
+    <!--<div id="startScreen" style="position:absolute">
+	   <center>
+  		<img id="Title" style="padding:20px; width:500px" src="http://10.65.1.197:8000/mozzimage/Mozzarella_Mayhem_Title.png"></img>
+    		<div id="CharSelctor" style="border:1px solid; border-radius:15px 15px 15px 15px; width:600px; height:200px;">
+    			<div id="leftButton" style="display: inline-block; position: relative; left:-196px; top:0px; width:100px; height:200px; border-right:1px solid">Left div</div>
+    			<div id="Chars" style="position: relative; display: inline-block; "> </div>
+    			<div id="rightButton" style="position: relative; display: inline-block; left:196px; top:0px; width:100px; height:200px; border-left:1px solid">Right div</div>
+    		</div>
+  	  </center>
+        <!--<button style="position:absolute;top: 50; left: 50;" id="startButton" onclick="StartGame()">Ready?</button>--
+    </div>-->
+
+    <div id="Arena" style="position:absolute; top: 0; left: 0; overflow: hidden" >
+      <div id="character">
+        <img id="charimg"></img>
+      </div>
+    </div>
+
+  </body>
+</html>
