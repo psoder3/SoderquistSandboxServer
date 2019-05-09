@@ -13,7 +13,8 @@
 
     var backgroundWidth = 300;
     var backgroundHeight = 300;
-
+	
+	var listofdivs = [];	    
     var numBackgroundColumns = arenaTotalWidth/backgroundWidth;
     var numBackgroundRows = arenaTotalHeight/backgroundHeight;
     var Listofpeople
@@ -153,6 +154,13 @@
                     }
                   }
 				  
+					  var killoff = 0;
+					  for(var j = 0; j < Listofpeople.length; j++){
+						  if(Lisofpeople[i].Id == listofdivs[i].id){
+						     	
+						     }
+					  }
+				  
 				  for(var i = 0; i < Listofpeople.length; i++){
 					
 					var person = Listofpeople[i];
@@ -167,6 +175,7 @@
 					{
 						charDiv = document.createElement('img');
 						Arena.appendChild(charDiv);
+						listofdivs.push(charDiv);
 						console.log("create");
 					}
 					charDiv.style.position = "absolute";
