@@ -214,7 +214,7 @@ app.post('/mozz/gridsend', function(req,res) {
 	var data = req.body;
 	var inlist = false;
 	for(var i = 0; i < MozzListofchange.length; i++){
-		 if(Date.now() - MozzListofchange[i].TimeStamp > 3000){
+		 if(Date.now() - MozzListofchange[i].TimeStamp > 1000){
 			 console.log("Found time");
 		 	MozzListofchange.splice(i,1);
 			inlist = true;
