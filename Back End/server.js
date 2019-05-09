@@ -58,6 +58,9 @@ app.get('/unoAIHadden', function(req,res){
 app.get('/scumAIHunter', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../Front End/scumAIHunter.html'));
 });
+app.get('/mossGame', function(req,res){
+	res.sendFile(path.resolve(__dirname + '/../Front End/Mozzarella.html'));
+});
 app.get('/dvd', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../Front End/DVDmove.html'));
 });
