@@ -112,7 +112,7 @@
 
         var client = new HttpClient();
 		var time = Date.now();
-		console.log(Date.now());
+
         var wrappedObj = {'Id':MyId,'TimeStamp':time,'Size':SizeOfCharacterInPX,'X':characterPositionRelativeToArenaX,'Y':characterPositionRelativeToArenaY,'Isdead':false,'pic':"http://10.65.1.197:8000/mozzimage/Mozzarela_Man.png"};
         			client.post('http://10.65.1.197:8000/mozz/gridsend',wrappedObj, function(response) {
                 client.get('http://10.65.1.197:8000/mozz/gridrecive/5', function(response) {
@@ -154,13 +154,18 @@
                     }
                   }
 				  
-					  var killoff = 0;
+					  var save = false;
+					for(var i = 0; i < listofdivs.length; i++){
 					  for(var j = 0; j < Listofpeople.length; j++){
-						  if(Lisofpeople[i].Id == listofdivs[i].id){
-						     	
+						  if(Listofpeople[i].Id == listofdivs[i].id){
+						     	save = true;
 						     }
 					  }
-				  
+						if(!save){
+						console.log("Removed");
+						   	listofdivs.remove();
+						   }
+					}
 				  for(var i = 0; i < Listofpeople.length; i++){
 					
 					var person = Listofpeople[i];
@@ -176,7 +181,7 @@
 						charDiv = document.createElement('img');
 						Arena.appendChild(charDiv);
 						listofdivs.push(charDiv);
-						console.log("create");
+
 					}
 					charDiv.style.position = "absolute";
 					charDiv.id = (person.Id);
