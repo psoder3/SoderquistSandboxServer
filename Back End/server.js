@@ -11,6 +11,7 @@ var MasterPaperlist = [];
 var PaperListofchange = [];
 var MozzListofchange = [];
 var globalid = 0;
+var Timestamp = Date.now();
 app.use(express.static(path.join(__dirname, 'public'))); // this middleware serves static files, such as .js, .img, .css files
 
 // Initialize server
@@ -213,8 +214,13 @@ app.post('/mozz/gridsend', function(req,res) {
 
 	var data = req.body;
 	var inlist = false;
+        if(data.Timestamp - Timestamp > 30000){
+          MozzListofchange = [];
+          globalid = 0;
+        }
 	for(var i = 0; i < MozzListofchange.length; i++){
-		 if(Date.now() - MozzListofchange[i].TimeStamp > 1000){
+                 Timestamp = Date.now();
+		 if(Timestamp - MozzListofchange[i].TimeStamp > 1000){
 			 console.log("Found time");
 		 	MozzListofchange.splice(i,1);
 			inlist = true;
