@@ -17,10 +17,11 @@
 	var listofdivs = [];	    
     var numBackgroundColumns = arenaTotalWidth/backgroundWidth;
     var numBackgroundRows = arenaTotalHeight/backgroundHeight;
-    var Listofpeople
+    var Listofpeople = [];
     var MyId = null;
     var clearseverlist = false;
     var listofplayers = [];
+	var deeplistofpeople = [];    
     /*Code by Hadden Smith, Hunter Kjar, and Spencer Hobert*/
     /*Artwork and Inspiration by Caden Espindola, and Jayden Lintz*/
 
@@ -118,7 +119,26 @@
                 client.get('http://10.65.1.197:8000/mozz/gridrecive/5', function(response) {
 					
                     var Mycallback = JSON.parse(response);
+			if(!(Listofpeople == [])){
+		    deeplistofpeople = JSON.parse(JSON.stringify(Listofpeople));
+		}
+				
                     Listofpeople = Mycallback['Listofchange'];
+			if(deeplistofpeople.length > Listofpeople.length){
+				var listofid = [];
+				for(var i = 0; i < Listofpeople.length; i++){
+					listofid.push(Listofpeople[i].Id);
+					
+				}
+			   for(var i = 0; i < deeplistofpeople.length; i++){
+				   if(!listofid.includes(deeplistthing[i].Id)){
+				      	var deletething = document.getElementById(deeplistthing[i].Id);
+					   deletething.parentNode.removeChild(deletething);
+				      }
+				   
+			   }
+			   
+			   }
 
                     if(MyId == null){
                       console.log(Mycallback['Listofchange']);
@@ -154,18 +174,7 @@
                     }
                   }
 				  
-					  var save = false;
-					for(var i = 0; i < listofdivs.length; i++){
-					  for(var j = 0; j < Listofpeople.length; j++){
-						  if(Listofpeople[i].Id == listofdivs[i].id){
-						     	save = true;
-						     }
-					  }
-						if(!save){
-						console.log("Removed");
-						   	listofdivs.remove();
-						   }
-					}
+					
 				  for(var i = 0; i < Listofpeople.length; i++){
 					
 					var person = Listofpeople[i];
