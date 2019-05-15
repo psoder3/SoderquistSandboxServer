@@ -223,6 +223,10 @@ app.post('/mozz/gridsend', function(req,res) {
 	Timestamp = Date.now();
 	for(var i = 0; i < MozzListofchange.length; i++){
                  Timestamp = Date.now();
+		 if(MozzListofchange[i].Id == data.Id){
+		   	MozzListofchange[i] = data;
+			inlist = true;
+		   }
 		 if(Timestamp - MozzListofchange[i].TimeStamp > 2000){
 			console.log("Found time");
 		 	MozzListofchange.splice(i,1);
@@ -230,11 +234,8 @@ app.post('/mozz/gridsend', function(req,res) {
 		  }else	if(MozzListofchange[i].Isdead){
 		  	MozzListofchange.splice(i,1);
 			inlist = true;
-		   }else if(MozzListofchange[i].Id == data.Id){
-			   
-		   	MozzListofchange[i] = data;
-			inlist = true;
 		   }
+
 	}
 
 	if(!inlist){
