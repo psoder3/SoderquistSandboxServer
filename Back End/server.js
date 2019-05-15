@@ -216,10 +216,7 @@ app.post('/mozz/gridsend', function(req,res) {
 
 	var data = req.body;
 	var inlist = false;
-        if(data.Timestamp - Timestamp > 30000){
-          MozzListofchange = [];
-          globalid = 0;
-        }
+
 	Timestamp = Date.now();
 	for(var i = 0; i < MozzListofchange.length; i++){
                  Timestamp = Date.now();
