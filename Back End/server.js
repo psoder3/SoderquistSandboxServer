@@ -205,6 +205,7 @@ app.get('/mozz/gridrecive/:Gridlist', function(req,res) {
 	}
 	if(parsedGridlist == 5){
 	res.send({
+			console.log(MozzListofchange);
 			'Listofchange':MozzListofchange
 	});
 	}
@@ -240,7 +241,7 @@ app.post('/mozz/gridsend', function(req,res) {
 		globalid++;
 	   	MozzListofchange.push(data);
 	   }
-
+	
 	res.send({"result":"hi"});
 });
 
