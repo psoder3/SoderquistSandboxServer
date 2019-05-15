@@ -230,7 +230,9 @@
 				}
 			}
 			if (counter == 0) {
-				CharImg.src = "http://10.65.1.197:8000/mozzimage/Mozzarela_Man_Walking.gif";
+				var CharImgCopy = CharImgLink;
+				var SplitLink = CharImgCopy.split(".p")
+				CharImg.src =  SplitLink[0] + "_Walking.gif";
 			}
 			console.log(characterPositionRelativeToArenaX + ", " + characterPositionRelativeToArenaY);
 		}
