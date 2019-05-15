@@ -226,9 +226,8 @@ app.post('/mozz/gridsend', function(req,res) {
 		 if(Timestamp - MozzListofchange[i].TimeStamp > 1000){
 			 console.log("Found time");
 		 	MozzListofchange.splice(i,1);
-			 i++
-		 }
-		if(MozzListofchange[i].Isdead){
+			inlist = true;
+		 }else	if(MozzListofchange[i].Isdead){
 		  	MozzListofchange.splice(i,1);
 			inlist = true;
 		   }else if(MozzListofchange[i].Id == data.Id){
