@@ -66,6 +66,8 @@
 		}
 		//end of anHttpRequest
 		function StartGame() {
+			document.body.style.backgroundImage = "none";
+			startScreen.style.display = "none";
 			Stop: {
 				if (clearseverlist) {
 					var client = new HttpClient();
