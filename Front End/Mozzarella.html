@@ -116,7 +116,7 @@
 				client.get('http://10.65.1.197:8000/mozz/gridrecive/5', function(response) {
 
 					var Mycallback = JSON.parse(response);
-					if (!(Listofpeople == [])) {
+					if (Listofpeople == []) {
 						deeplistofpeople = JSON.parse(JSON.stringify(Listofpeople));
 					}
 
