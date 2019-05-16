@@ -123,8 +123,8 @@
         							listofid.push(Listofpeople[i].Id);
         						}
         						for (var i = 0; i < deeplistofpeople.length; i++) {
-        							if (!listofid.includes(deeplistthing[i].Id)) {
-        								var deletething = document.getElementById(deeplistthing[i].Id);
+        							if (!listofid.includes(deeplistofpeople[i].Id)) {
+        								var deletething = document.getElementById(deeplistofpeople[i].Id);
         								deletething.parentNode.removeChild(deletething);
         							}
         						}
