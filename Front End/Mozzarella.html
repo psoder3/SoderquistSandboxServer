@@ -108,7 +108,7 @@
 				'X': characterPositionRelativeToArenaX,
 				'Y': characterPositionRelativeToArenaY,
 				'Isdead': false,
-				'pic': "http://10.65.1.197:8000/mozzimage/Mozzarela_Man.png"
+				'pic': CharImgLink
 			};
 			client.post('http://10.65.1.197:8000/mozz/gridsend', wrappedObj, function(response) {
 				client.get('http://10.65.1.197:8000/mozz/gridrecive/5', function(response) {
