@@ -1,4 +1,3 @@
-
 <html>
     <script>
 		var arenaTotalWidth = 2000;
@@ -23,7 +22,7 @@
 		var deeplistofpeople = [];
 		/*Code by Hadden Smith, Hunter Kjar, and Spencer Hobert*/
 		/*Artwork and Inspiration by Caden Espindola, and Jayden Lintz*/
-		
+
 		window.onload = function() {
 			var startScreen = document.getElementById('startScreen');
 			Arena = document.getElementById('Arena');
@@ -94,11 +93,10 @@
 				character.style.height = SizeOfCharacterInPX + "px";
 				CharImg.style.width = SizeOfCharacterInPX + "px";
 				CharImg.style.height = SizeOfCharacterInPX + "px";
-				CharImg.src = "http://10.65.1.197:8000/mozzimage/Mozzarela_Man.png";
+				CharImg.src = CharImgLink;
 				UpdateandCallsever();
 			}
 		}
-
 		function UpdateandCallsever() { //Put code to pull from server and update users screen
 			//Pulling code
 			var client = new HttpClient();
@@ -114,28 +112,23 @@
 			};
 			client.post('http://10.65.1.197:8000/mozz/gridsend', wrappedObj, function(response) {
 				client.get('http://10.65.1.197:8000/mozz/gridrecive/5', function(response) {
-
 					var Mycallback = JSON.parse(response);
-					if (Listofpeople == []) {
-						deeplistofpeople = JSON.parse(JSON.stringify(Listofpeople));
-					}
-
-					Listofpeople = Mycallback['Listofchange'];
-					if (deeplistofpeople.length > Listofpeople.length) {
-						var listofid = [];
-						for (var i = 0; i < Listofpeople.length; i++) {
-							listofid.push(Listofpeople[i].Id);
-
-						}
-						for (var i = 0; i < deeplistofpeople.length; i++) {
-							if (!listofid.includes(deeplistthing[i].Id)) {
-								var deletething = document.getElementById(deeplistthing[i].Id);
-								deletething.parentNode.removeChild(deletething);
-							}
-
-						}
-
-					}
+        					if (Listofpeople != undefined || Listofpeople != null) {
+        						deeplistofpeople = JSON.parse(JSON.stringify(Listofpeople));
+        					}
+        					Listofpeople = Mycallback['Listofchange'];
+        					if (deeplistofpeople.length > Listofpeople.length) {
+        						var listofid = [];
+        						for (var i = 0; i < Listofpeople.length; i++) {
+        							listofid.push(Listofpeople[i].Id);
+        						}
+        						for (var i = 0; i < deeplistofpeople.length; i++) {
+        							if (!listofid.includes(deeplistthing[i].Id)) {
+        								var deletething = document.getElementById(deeplistthing[i].Id);
+        								deletething.parentNode.removeChild(deletething);
+        							}
+        						}
+        					}
 					if (MyId == null) {
 						console.log(Mycallback['Listofchange']);
 						MyId = Mycallback['Listofchange'][Mycallback['Listofchange'].length - 1].Id;
@@ -150,7 +143,6 @@
 						  }
 						}
 					  }*/
-
 					//create arena after called server
 					Arena.style.width = window.innerWidth;
 					Arena.style.height = window.innerHeight;
@@ -163,10 +155,7 @@
 							tile.style.top = (i * backgroundHeight) - characterPositionRelativeToArenaY;
 						}
 					}
-
-
 					for (var i = 0; i < Listofpeople.length; i++) {
-
 						var person = Listofpeople[i];
 						if (MyId != person.Id) {
 							var charwindowX = window.innerWidth / 2 + ((person.X) - characterPositionRelativeToArenaX);
@@ -178,7 +167,6 @@
 								if (charDiv == undefined || charDiv == null) {
 									charDiv = document.createElement('img');
 									Arena.appendChild(charDiv);
-
 								}
 								charDiv.style.position = "absolute";
 								charDiv.id = (person.Id);
@@ -187,11 +175,8 @@
 								charDiv.style.height = SizeOfCharacterInPX + "px";
 								charDiv.style.left = (charwindowX - (charDiv.width / 2)) + "px";
 								charDiv.style.top = (charwindowY - (charDiv.height / 2)) + "px";
-
 								//charDiv.style.top = (person.Y) - characterPositionRelativeToArenaY;
 								charDiv.style.zIndex = 2;
-
-
 							}
 						}
 					}
@@ -203,7 +188,6 @@
 			});
 		}
 		var counter = 0;
-
 		function Move(event) {
 			if ((event.key).toLowerCase() == "w" || event.keyCode == 38) {
 				characterPositionRelativeToArenaY -= 3;
@@ -236,24 +220,62 @@
 			}
 			console.log(characterPositionRelativeToArenaX + ", " + characterPositionRelativeToArenaY);
 		}
-
-		function MoveCharSelction(movement) {
+    
+    function MoveCharSelction(movement) {
 			var ImgChar0 = document.getElementById('char0');
 			var ImgChar1 = document.getElementById('char1');
 			var ImgChar2 = document.getElementById('char2');
 			var ImgChar3 = document.getElementById('char3');
+			var ImgChar4 = document.getElementById('char4');
+			var ImgChar5 = document.getElementById('char5');
+			var ImgChar6 = document.getElementById('char6');
 			var tempList0 = [ImgChar0, "http://10.65.1.197:8000/mozzimage/SuitMozzarelaMan_Walking.gif", "Mozzy 47"];
 			var tempList1 = [ImgChar1, "http://10.65.1.197:8000/mozzimage/Chief_Mozzarela_Man_Walking.gif", "Master Cheese"];
 			var tempList2 = [ImgChar2, "http://10.65.1.197:8000/mozzimage/Mozzarela_Man_Walking.gif", "Mozzarella Man"];
 			var tempList3 = [ImgChar3, "http://10.65.1.197:8000/mozzimage/Iron_Mozzarela_Man_Walking.gif", "Iron Mozzarella"];
-			var Chars = [tempList0, tempList1, tempList2, tempList3];
+			var tempList4 = [ImgChar4, "http://10.65.1.197:8000/mozzimage/Batzzerela_Walking.gif", "Bat Cheese"];
+			var tempList5 = [ImgChar5, "http://10.65.1.197:8000/mozzimage/Pirate_Walking.gif", "Skervy Cheese"];
+			var tempList6 = [ImgChar6, "http://10.65.1.197:8000/mozzimage/Mozzio_Walking.gif", "Moldy Cheese"];
+			var Chars = [tempList0, tempList1, tempList2, tempList3, tempList4, tempList5, tempList6];
 			var CharNameLabel = document.getElementById('CharName');
-			if ((ImgChar3.style.left != "165px" && movement == "right") || (ImgChar0.style.left != "165px" && movement == "left")) {
+			var checked = false;
 				for (var i = 0; i < Chars.length; i++) {
 					var CharImg = Chars[i][0];
 					if (movement == "right") {
+						if(checked == false) {
+							checked = true;
+							var highestCharRight = 0;
+							for(var j = 0; j < Chars.length; j++) {
+								if(parseFloat(Chars[j][0].style.left, 10) > highestCharRight) highestCharRight = parseFloat(Chars[j][0].style.left, 10);
+							}
+							if(highestCharRight == 450) {
+								var lowestCharLeftDiv = ImgChar0;
+								for(var j = 0; j < Chars.length; j++) {
+									if(parseFloat(Chars[j][0].style.left, 10) < parseFloat(lowestCharLeftDiv.style.left, 10)) lowestCharLeftDiv = Chars[j][0];
+								}
+								lowestCharLeftDiv.style.transition = "none";
+								lowestCharLeftDiv.style.left = "592.5px";
+								setTimeout(function () {lowestCharLeftDiv.style.transition = "left .2s ease-in 0s, top .5s ease-in 0s, height .2s ease 0s, width .2s ease 0s";},50);
+							}
+						}
 						CharImg.style.left = moveElementRight(CharImg);
 					} else if (movement == "left") {
+						if(checked == false) {
+							checked = true;
+							var lowestCharLeft = 1000;
+							for(var j = 0; j < Chars.length; j++) {
+								if(parseFloat(Chars[j][0].style.left, 10) < lowestCharLeft) lowestCharLeft = parseFloat(Chars[j][0].style.left, 10);
+							}
+							if(lowestCharLeft == -120) {
+								var highestCharRightDiv = ImgChar0;
+								for(var j = 0; j < Chars.length; j++) {
+									if(parseFloat(Chars[j][0].style.left, 10) > parseFloat(highestCharRightDiv.style.left, 10)) highestCharRightDiv = Chars[j][0];
+								}
+								highestCharRightDiv.style.transition = "none";
+								highestCharRightDiv.style.left = "-262.5px";
+								setTimeout(function () {highestCharRightDiv.style.transition = "left .2s ease-in 0s, top .5s ease-in 0s, height .2s ease 0s, width .2s ease 0s";},50);
+							}
+						}
 						CharImg.style.left = moveElementLeft(CharImg);
 					}
 					if (CharImg.style.left == "165px") CharNameLabel.innerHTML = "<b><font size='5' style='font-family:trebuchet ms; color:#b34e00'>" + Chars[i][2] + "</font></b>";
@@ -265,16 +287,16 @@
 					var Link = Chars[i][1].split("_Walking");
 					CharImgLink = Link[0] + ".png";
 					}
-				}
+				
 			}
 		}
-
+    
 		function moveElementRight(element) {
 			var currLeft = element.style.left;
 			var numLeft = parseFloat(currLeft, 10);
 			return numLeft - 142.5;
 		}
-
+    
 		function moveElementLeft(element) {
 			var currLeft = element.style.left;
 			var numLeft = parseFloat(currLeft, 10);
@@ -297,12 +319,15 @@
 			<div id="leftButton" style="display:inline-block; position:absolute; left:0px; top:0px; width:100px; height:200px; border-right:1px solid;">
 				<img id="leftArrow" onclick="MoveCharSelction('left')" src="http://10.65.1.197:8000/mozzimage/left_arrow.png" style="position:absolute; width:100px; top:50px; display:inline-block"></img>
 			</div>
-				<div id="Chars" style="position:absolute; display:inline-block; width:450px; height:200px; left:101px; top:0px; overflow:hidden;"> 
+				<div id="Chars" style="position:absolute; display:inline-block; width:450px; height:200px; left:101px; top:0px; overflow:hidden;">
 				<!--Character Images-->
 					<img id="char0" src="http://10.65.1.197:8000/mozzimage/SuitMozzarelaMan_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:-120px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
 					<img id="char1" src="http://10.65.1.197:8000/mozzimage/Chief_Mozzarela_Man_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:22.5px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
 					<img id="char2" src="http://10.65.1.197:8000/mozzimage/Mozzarela_Man_Walking.gif" style="position:absolute; display:inline-block; width:120px; height:120px; left:165px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
 					<img id="char3" src="http://10.65.1.197:8000/mozzimage/Iron_Mozzarela_Man_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:307.5; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+          <img id="char4" src="http://10.65.1.197:8000/mozzimage/Batzzerela_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:450px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+					<img id="char5" src="http://10.65.1.197:8000/mozzimage/Pirate_Walking.gif" style="position:absolute; display:inline-block; width:120px; height:120px; left:592.5px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+					<img id="char6" src="http://10.65.1.197:8000/mozzimage/Mozzio_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:735px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
 				</div>
 			<div id="CharName" style="display:table-cell; top:170px; text-align: center; vertical-align:bottom"><b><font size='5' style="font-family:trebuchet ms; color:#b34e00">Mozzarella Man</font></b></div>
 			<div id="rightButton" onclick="MoveCharSelction('right')" style="position:absolute; display:inline-block; left:550px; top:0px; width:100px; height:200px; border-left:1px solid">
