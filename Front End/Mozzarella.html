@@ -203,20 +203,20 @@
 								(charwindowY > -200 && charwindowY < window.innerHeight + 200)
 							) {
                 console.log(person);
-								var charDiv = document.getElementById(person.Id);
-								if (charDiv == undefined || charDiv == null) {
-									charDiv = document.createElement('img');
+								var CheeseDiv = document.getElementById(person.Id);
+								if (CheeseDiv == undefined || charDiv == null) {
+									CheeseDiv = document.createElement('img');
 									Arena.appendChild(charDiv);
 								}
-								charDiv.style.position = "absolute";
-								charDiv.id = (person.Id);
-								charDiv.src = person.gif;
-								charDiv.style.width = SizeOfCharacterInPX + "px";
-								charDiv.style.height = SizeOfCharacterInPX + "px";
-								charDiv.style.left = (charwindowX - (charDiv.width / 2)) + "px";
-								charDiv.style.top = (charwindowY - (charDiv.height / 2)) + "px";
+								CheeseDiv.style.position = "absolute";
+								CheeseDiv.id = (person.Id);
+								CheeseDiv.src = person.gif;
+								CheeseDiv.style.width = 20 + "px";
+								CheeseDiv.style.height = 20 + "px";
+								CheeseDiv.style.left = (charwindowX - (CheeseDiv.width / 2)) + "px";
+								CheeseDiv.style.top = (charwindowY - (CheeseDiv.height / 2)) + "px";
 								//charDiv.style.top = (person.Y) - characterPositionRelativeToArenaY;
-								charDiv.style.zIndex = 2;
+								CheeseDiv.style.zIndex = 2;
 							}
 					}
 					//end of create arean
