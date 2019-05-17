@@ -220,7 +220,7 @@ app.post('/mozz/gridsend', function(req,res) {
 
 	var data = req.body;
 	var inlist = false;
-	var cheeseImglist = [http://10.65.1.197:8000/mozzimage/CheeseMoving.gif,http://10.65.1.197:8000/mozzimage/CheeseCurd.gif];
+	var cheeseImglist = ["http://10.65.1.197:8000/mozzimage/CheeseMoving.gif","http://10.65.1.197:8000/mozzimage/CheeseCurd.gif"];
         if(data.Timestamp - Timestamp > 30000){
           MozzListofchange = [];
           globalid = 0;
