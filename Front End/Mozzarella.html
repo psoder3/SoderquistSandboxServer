@@ -141,7 +141,7 @@
         					Listofcheese = Mycallback['Cheeselist'];
         					if (deeplistofcheese.length > Listofcheese.length) {
         						var listofid = [];
-        						for (var i = 0; i < Listofcheese.length; i++){ 
+        						for (var i = 0; i < Listofcheese.length; i++){
         							listofid.push(Listofcheese[i].Id);
         						}
         						for (var i = 0; i < deeplistofcheese.length; i++) {
@@ -202,6 +202,7 @@
 							if ((charwindowX > -200 && charwindowX < window.innerWidth + 200) &&
 								(charwindowY > -200 && charwindowY < window.innerHeight + 200)
 							) {
+                console.log(person);
 								var charDiv = document.getElementById(person.Id);
 								if (charDiv == undefined || charDiv == null) {
 									charDiv = document.createElement('img');
