@@ -12,6 +12,8 @@ var PaperListofchange = [];
 var MozzListofchange = [];
 var globalid = 0;
 var Timestamp = Date.now();
+var Listofcheese = [];
+var GlobalCheeseID = [];
 app.use(express.static(path.join(__dirname, 'public'))); // this middleware serves static files, such as .js, .img, .css files
 
 // Initialize server
@@ -202,12 +204,14 @@ app.get('/mozz/gridrecive/:Gridlist', function(req,res) {
 	if(parsedGridlist == 3){
 		MozzListofchange = [];
 		globalid = 0;
+		GlobalCheeseID = 0;
 	}
 	if(parsedGridlist == 5){
 
 	res.send({
 			
-			'Listofchange':MozzListofchange
+			'Listofchange':MozzListofchange,
+			'Cheeselist':Listofcheese
 	});
 	}
 
@@ -216,10 +220,26 @@ app.post('/mozz/gridsend', function(req,res) {
 
 	var data = req.body;
 	var inlist = false;
+	var cheeseImglist = [http://10.65.1.197:8000/mozzimage/CheeseMoving.gif,http://10.65.1.197:8000/mozzimage/CheeseCurd.gif];
         if(data.Timestamp - Timestamp > 30000){
           MozzListofchange = [];
           globalid = 0;
+	  GlobalCheeseID = 0;
         }
+	for(var i = 0; Listofcheese.length < 100; i++){
+		var RandomX = Math.floor((Math.random() * 1900))
+		var RandomY = Math.floor((Math.random() * 1900))
+		var randomcheese = Math.floor((Math.random() * cheeseImglist.length));
+	   	var cheeseobj = {
+			'Id',GlobalCheeseID,
+			'X':RandomX,
+			'Y':RandomY,
+			'gif':cheeseImglist[randomcheese];
+		};
+		GlobalCheeseID++;
+		Listofcheese.push(cheeseobj);
+	}
+	   
 	Timestamp = Date.now();
 	for(var i = 0; i < MozzListofchange.length; i++){
                  Timestamp = Date.now();
