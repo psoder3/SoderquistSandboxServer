@@ -231,7 +231,7 @@ app.post('/mozz/gridsend', function(req,res) {
 		var RandomY = Math.floor((Math.random() * 1900))
 		var randomcheese = Math.floor((Math.random() * cheeseImglist.length));
 	   	var cheeseobj = {
-			'Id',GlobalCheeseID,
+			'Id':GlobalCheeseID,
 			'X':RandomX,
 			'Y':RandomY,
 			'gif':cheeseImglist[randomcheese];
