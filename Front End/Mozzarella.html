@@ -72,7 +72,7 @@
 			Stop: {
 				if (clearseverlist) {
 					var client = new HttpClient();
-					client.get('http://104.236.169.62/mozz/gridrecive/3', function(response) {});
+					client.get('http://104.236.169.62:8000/mozz/gridrecive/3', function(response) {});
 					break Stop;
 				}
 				window.addEventListener("keypress", Move, false);
@@ -83,7 +83,7 @@
 						var tile = document.createElement('img');
 						tile.style.position = "absolute";
 						tile.id = (j + '-' + i);
-						tile.src = "http://104.236.169.62/mozzimage/Map.png";
+						tile.src = "http://104.236.169.62:8000/mozzimage/Map.png";
 						tile.style.left = (j * backgroundWidth) - characterPositionRelativeToArenaX;
 						tile.style.top = (i * backgroundHeight) - characterPositionRelativeToArenaY;
 						tile.style.zIndex = -2;
@@ -113,8 +113,8 @@
 				'pic': CharImgLinkPNG,
         'gif': CharImgLinkGIF,
 			};
-			client.post('http://104.236.169.62/mozz/gridsend', wrappedObj, function(response) {
-				client.get('http://104.236.169.62/mozz/gridrecive/5', function(response) {
+			client.post('http://104.236.169.62:8000/mozz/gridsend', wrappedObj, function(response) {
+				client.get('http://104.236.169.62:8000/mozz/gridrecive/5', function(response) {
 					var Mycallback = JSON.parse(response);
                   //deleting people from cleint
                   if (Listofpeople != undefined || Listofpeople != null) {
@@ -263,13 +263,13 @@
 			var ImgChar4 = document.getElementById('char4');
 			var ImgChar5 = document.getElementById('char5');
 			var ImgChar6 = document.getElementById('char6');
-			var tempList0 = [ImgChar0, "http://104.236.169.62/mozzimage/SuitMozzarelaMan_Walking.gif", "Mozzy 47"];
-			var tempList1 = [ImgChar1, "http://104.236.169.62/mozzimage/Chief_Mozzarela_Man_Walking.gif", "Master Cheese"];
-			var tempList2 = [ImgChar2, "http://104.236.169.62/mozzimage/Mozzarela_Man_Walking.gif", "Mozzarella Man"];
-			var tempList3 = [ImgChar3, "http://104.236.169.62/mozzimage/Iron_Mozzarela_Man_Walking.gif", "Iron Mozzarella"];
-			var tempList4 = [ImgChar4, "http://104.236.169.62/mozzimage/Batzzerela_Walking.gif", "Bat Cheese"];
-			var tempList5 = [ImgChar5, "http://104.236.169.62/mozzimage/Pirate_Walking.gif", "Skervy Cheese"];
-			var tempList6 = [ImgChar6, "http://104.236.169.62/mozzimage/Mozzio_Walking.gif", "Moldy Cheese"];
+			var tempList0 = [ImgChar0, "http://104.236.169.62:8000/mozzimage/SuitMozzarelaMan_Walking.gif", "Mozzy 47"];
+			var tempList1 = [ImgChar1, "http://104.236.169.62:8000/mozzimage/Chief_Mozzarela_Man_Walking.gif", "Master Cheese"];
+			var tempList2 = [ImgChar2, "http://104.236.169.62:8000/mozzimage/Mozzarela_Man_Walking.gif", "Mozzarella Man"];
+			var tempList3 = [ImgChar3, "http://104.236.169.62:8000/mozzimage/Iron_Mozzarela_Man_Walking.gif", "Iron Mozzarella"];
+			var tempList4 = [ImgChar4, "http://104.236.169.62:8000/mozzimage/Batzzerela_Walking.gif", "Bat Cheese"];
+			var tempList5 = [ImgChar5, "http://104.236.169.62:8000/mozzimage/Pirate_Walking.gif", "Skervy Cheese"];
+			var tempList6 = [ImgChar6, "http://104.236.169.62:8000/mozzimage/Mozzio_Walking.gif", "Moldy Cheese"];
 			var Chars = [tempList0, tempList1, tempList2, tempList3, tempList4, tempList5, tempList6];
 			var CharNameLabel = document.getElementById('CharName');
 			var checked = false;
@@ -341,35 +341,35 @@
 <style>
 	body {
 	  text-align: center;
-	  background-image: url("http://104.236.169.62/mozzimage/Map.png");
+	  background-image: url("http://104.236.169.62:8000/mozzimage/Map.png");
 	  background-repeat: repeat-all;
 	}
 </style>
 
   <body>
     <div id="startScreen" style="position:absolute; left:0px; top:0px">
-  		<img id="Title" style="padding:20px; width:700px; align:center" src="http://104.236.169.62/mozzimage/Mozzarella_Mayhem_Title.png"></img>
+  		<img id="Title" style="padding:20px; width:700px; align:center" src="http://104.236.169.62:8000/mozzimage/Mozzarella_Mayhem_Title.png"></img>
 		<div id="CharSelctor" style="position:absolute; text-align:left; border:2px solid; border-radius:15px 15px 15px 15px; width:650px; height:198px; display:table">
 			<div id="greyOut" style="position:absolute; border:2px; border-radius:15px 15px 15px 15px; top:0; left:0; bottom:0; right:0; background:rgba(0,0,0,.2);"> <!-- possibly some loading-animation and/or explanation --> </div>
 			<div id="leftButton" style="display:inline-block; position:absolute; left:0px; top:0px; width:100px; height:200px; border-right:1px solid;">
-				<img id="leftArrow" onclick="MoveCharSelction('left')" src="http://104.236.169.62/mozzimage/left_arrow.png" style="position:absolute; width:100px; top:50px; display:inline-block"></img>
+				<img id="leftArrow" onclick="MoveCharSelction('left')" src="http://104.236.169.62:8000/mozzimage/left_arrow.png" style="position:absolute; width:100px; top:50px; display:inline-block"></img>
 			</div>
 				<div id="Chars" style="position:absolute; display:inline-block; width:450px; height:200px; left:101px; top:0px; overflow:hidden;">
 				<!--Character Images-->
-					<img id="char0" src="http://104.236.169.62/mozzimage/SuitMozzarelaMan_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:-120px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
-					<img id="char1" src="http://104.236.169.62/mozzimage/Chief_Mozzarela_Man_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:22.5px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
-					<img id="char2" src="http://104.236.169.62/mozzimage/Mozzarela_Man_Walking.gif" style="position:absolute; display:inline-block; width:120px; height:120px; left:165px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
-					<img id="char3" src="http://104.236.169.62/mozzimage/Iron_Mozzarela_Man_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:307.5; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
-          <img id="char4" src="http://104.236.169.62/mozzimage/Batzzerela_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:450px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
-					<img id="char5" src="http://104.236.169.62/mozzimage/Pirate_Walking.gif" style="position:absolute; display:inline-block; width:120px; height:120px; left:592.5px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
-					<img id="char6" src="http://104.236.169.62/mozzimage/Mozzio_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:735px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+					<img id="char0" src="http://104.236.169.62:8000/mozzimage/SuitMozzarelaMan_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:-120px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+					<img id="char1" src="http://104.236.169.62:8000/mozzimage/Chief_Mozzarela_Man_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:22.5px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+					<img id="char2" src="http://104.236.169.62:8000/mozzimage/Mozzarela_Man_Walking.gif" style="position:absolute; display:inline-block; width:120px; height:120px; left:165px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+					<img id="char3" src="http://104.236.169.62:8000/mozzimage/Iron_Mozzarela_Man_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:307.5; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+          <img id="char4" src="http://104.236.169.62:8000/mozzimage/Batzzerela_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:450px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+					<img id="char5" src="http://104.236.169.62:8000/mozzimage/Pirate_Walking.gif" style="position:absolute; display:inline-block; width:120px; height:120px; left:592.5px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
+					<img id="char6" src="http://104.236.169.62:8000/mozzimage/Mozzio_Walking.gif" style="position:absolute; display:inline-block; width:100px; height:100px; left:735px; top:37.5px; transition: left .2s ease-in, top .5s ease-in, height .2s, width .2s;"></img>
 				</div>
 			<div id="CharName" style="display:table-cell; top:170px; text-align: center; vertical-align:bottom"><b><font size='5' style="font-family:trebuchet ms; color:#b34e00">Mozzarella Man</font></b></div>
 			<div id="rightButton" onclick="MoveCharSelction('right')" style="position:absolute; display:inline-block; left:550px; top:0px; width:100px; height:200px; border-left:1px solid">
-				<img id="rightArrow" src="http://104.236.169.62/mozzimage/right_arrow.png" style="position:absolute; width:100px; top:50px; display:inline-block"></img>
+				<img id="rightArrow" src="http://104.236.169.62:8000/mozzimage/right_arrow.png" style="position:absolute; width:100px; top:50px; display:inline-block"></img>
 			</div>
 		</div>
-		<div id="startButton" style="position:relative; align:center; top:250px" onclick="StartGame()"><img src="http://104.236.169.62/mozzimage/StartButton.png" style="width:200px;"></img></div>
+		<div id="startButton" style="position:relative; align:center; top:250px" onclick="StartGame()"><img src="http://104.236.169.62:8000/mozzimage/StartButton.png" style="width:200px;"></img></div>
     </div>
 
     <div id="Arena" style="position:absolute; top: 0; left: 0; overflow: hidden" >
