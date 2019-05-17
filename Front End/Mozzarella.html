@@ -7,8 +7,8 @@
 		var character;
 		var CharImg;
 		var timeoutDelay = 100;
-		var characterPositionRelativeToArenaX = 200;
-		var characterPositionRelativeToArenaY = 400;
+		var characterPositionRelativeToArenaX = Math.floor((Math.random() * 200));
+		var characterPositionRelativeToArenaY = Math.floor((Math.random() * 200));
 		var backgroundWidth = 300;
 		var backgroundHeight = 300;
 		var numBackgroundColumns = arenaTotalWidth / backgroundWidth;
@@ -21,8 +21,10 @@
     var CharImgLinkGIF = "";
 		var listofdivs = [];
 		var deeplistofpeople = [];
+    var Listofcheese = [];
+    var deeplistofcheese = [];
 		/*Code by Hadden Smith, Hunter Kjar, and Spencer Hobert*/
-		/*Artwork and Inspiration by Caden Espindola, and Jayden Lintz*/
+		/*Artwork and Inspiration by Caden Espindola and Jayden Lintz*/
 		window.onload = function() {
 			var startScreen = document.getElementById('startScreen');
 			Arena = document.getElementById('Arena');
@@ -114,7 +116,8 @@
 			client.post('http://10.65.1.197:8000/mozz/gridsend', wrappedObj, function(response) {
 				client.get('http://10.65.1.197:8000/mozz/gridrecive/5', function(response) {
 					var Mycallback = JSON.parse(response);
-        					if (Listofpeople != undefined || Listofpeople != null) {
+                  //deleting people from cleint
+                  if (Listofpeople != undefined || Listofpeople != null) {
         						deeplistofpeople = JSON.parse(JSON.stringify(Listofpeople));
         					}
         					Listofpeople = Mycallback['Listofchange'];
@@ -126,6 +129,24 @@
         						for (var i = 0; i < deeplistofpeople.length; i++) {
         							if (!listofid.includes(deeplistofpeople[i].Id)) {
         								var deletething = document.getElementById(deeplistofpeople[i].Id);
+        								deletething.parentNode.removeChild(deletething);
+        							}
+        						}
+        					}
+
+                  //deleting cheese from client
+                  if (Listofcheese != undefined || Listofcheese != null) {
+        						deeplistofcheese = JSON.parse(JSON.stringify(Listofcheese));
+        					}
+        					Listofcheese = Mycallback['Cheeselist'];
+        					if (deeplistofcheese.length > Listofcheese.length) {
+        						var listofid = [];
+        						for (var i = 0; i < Listofcheese.length; i++) 
+        							listofid.push(Listofcheese[i].Id);
+        						}
+        						for (var i = 0; i < deeplistofcheese.length; i++) {
+        							if (!listofid.includes(deeplistofcheese[i].Id)) {
+        								var deletething = document.getElementById(deeplistofcheese[i].Id);
         								deletething.parentNode.removeChild(deletething);
         							}
         						}
@@ -146,6 +167,7 @@
 							tile.style.top = (i * backgroundHeight) - characterPositionRelativeToArenaY;
 						}
 					}
+          //creating local people imgs stuff
 					for (var i = 0; i < Listofpeople.length; i++) {
 						var person = Listofpeople[i];
 						if (MyId != person.Id) {
@@ -170,6 +192,31 @@
 								charDiv.style.zIndex = 2;
 							}
 						}
+					}
+          //creating Cheese
+          for (var i = 0; i < Listofcheese.length; i++) {
+						var person = Listofcheese[i];
+
+							var charwindowX = window.innerWidth / 2 + ((person.X) - characterPositionRelativeToArenaX);
+							var charwindowY = window.innerHeight / 2 + ((person.Y) - characterPositionRelativeToArenaY);
+							if ((charwindowX > -200 && charwindowX < window.innerWidth + 200) &&
+								(charwindowY > -200 && charwindowY < window.innerHeight + 200)
+							) {
+								var charDiv = document.getElementById(person.Id);
+								if (charDiv == undefined || charDiv == null) {
+									charDiv = document.createElement('img');
+									Arena.appendChild(charDiv);
+								}
+								charDiv.style.position = "absolute";
+								charDiv.id = (person.Id);
+								charDiv.src = person.gif;
+								charDiv.style.width = SizeOfCharacterInPX + "px";
+								charDiv.style.height = SizeOfCharacterInPX + "px";
+								charDiv.style.left = (charwindowX - (charDiv.width / 2)) + "px";
+								charDiv.style.top = (charwindowY - (charDiv.height / 2)) + "px";
+								//charDiv.style.top = (person.Y) - characterPositionRelativeToArenaY;
+								charDiv.style.zIndex = 2;
+							}
 					}
 					//end of create arean
 					setTimeout(function() {
@@ -203,7 +250,7 @@
 					characterPositionRelativeToArenaX -= 3;
 				}
 			}
-			console.log(characterPositionRelativeToArenaX + ", " + characterPositionRelativeToArenaY);
+			// console.log(characterPositionRelativeToArenaX + ", " + characterPositionRelativeToArenaY);
 		}
 
     function MoveCharSelction(movement) {
