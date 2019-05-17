@@ -234,7 +234,7 @@ app.post('/mozz/gridsend', function(req,res) {
 			'Id':GlobalCheeseID,
 			'X':RandomX,
 			'Y':RandomY,
-			'gif':cheeseImglist[randomcheese];
+			'gif':cheeseImglist[randomcheese]
 		};
 		GlobalCheeseID++;
 		Listofcheese.push(cheeseobj);
