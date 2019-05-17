@@ -17,12 +17,12 @@
 		var MyId = null;
 		var clearseverlist = false;
 		var listofplayers = [];
-		var CharImgLink = "";
+		var CharImgLinkPNG = "";
+    var CharImgLinkGIF = "";
 		var listofdivs = [];
 		var deeplistofpeople = [];
 		/*Code by Hadden Smith, Hunter Kjar, and Spencer Hobert*/
 		/*Artwork and Inspiration by Caden Espindola, and Jayden Lintz*/
-
 		window.onload = function() {
 			var startScreen = document.getElementById('startScreen');
 			Arena = document.getElementById('Arena');
@@ -93,7 +93,7 @@
 				character.style.height = SizeOfCharacterInPX + "px";
 				CharImg.style.width = SizeOfCharacterInPX + "px";
 				CharImg.style.height = SizeOfCharacterInPX + "px";
-				CharImg.src = CharImgLink;
+				CharImg.src = CharImgLinkPNG;
 				UpdateandCallsever();
 			}
 		}
@@ -108,7 +108,8 @@
 				'X': characterPositionRelativeToArenaX,
 				'Y': characterPositionRelativeToArenaY,
 				'Isdead': false,
-				'pic': CharImgLink
+				'pic': CharImgLinkPNG,
+        'gif': CharImgLinkGIF,
 			};
 			client.post('http://10.65.1.197:8000/mozz/gridsend', wrappedObj, function(response) {
 				client.get('http://10.65.1.197:8000/mozz/gridrecive/5', function(response) {
@@ -133,16 +134,6 @@
 						console.log(Mycallback['Listofchange']);
 						MyId = Mycallback['Listofchange'][Mycallback['Listofchange'].length - 1].Id;
 					}
-					/*  for(var i = 0; i < Listofpeople.length; i++){
-						if(!(Listofpeople[i].Id == MyId)){
-						var leftegde = characterPositionRelativeToArenaX - (window.innerWidth/2);
-						var topegde = characterPositionRelativeToArenaY - (window.innerHeight/2);
-						var rightegde = characterPositionRelativeToArenaX + (window.innerWidth/2);
-						var bottomegde = characterPositionRelativeToArenaY + (window.innerHeight/2);
-						  if((Listofpeople[i].list[0] >= leftegde && Listofpeople[i].list[0] <= rightegde) && (Listofpeople[i].list[1] >= topegde && Listofpeople[i].list[1] <= bottomegde)){
-						  }
-						}
-					  }*/
 					//create arena after called server
 					Arena.style.width = window.innerWidth;
 					Arena.style.height = window.innerHeight;
@@ -187,7 +178,6 @@
 				});
 			});
 		}
-		var counter = 0;
 		function Move(event) {
 			if ((event.key).toLowerCase() == "w" || event.keyCode == 38) {
 				characterPositionRelativeToArenaY -= 3;
@@ -213,14 +203,9 @@
 					characterPositionRelativeToArenaX -= 3;
 				}
 			}
-			if (counter == 0) {
-				var CharImgCopy = CharImgLink;
-				var SplitLink = CharImgCopy.split(".p")
-				CharImg.src =  SplitLink[0] + "_Walking.gif";
-			}
 			console.log(characterPositionRelativeToArenaX + ", " + characterPositionRelativeToArenaY);
 		}
-    
+
     function MoveCharSelction(movement) {
 			var ImgChar0 = document.getElementById('char0');
 			var ImgChar1 = document.getElementById('char1');
@@ -285,18 +270,19 @@
 					if (CharImg.style.left == "165px") CharImg.style.width = "120px";
 					if (CharImg.style.left == "165px")  {
 					var Link = Chars[i][1].split("_Walking");
-					CharImgLink = Link[0] + ".png";
+					CharImgLinkPNG = Link[0] + ".png";
+          CharImgLinkGIF = Chars[i][1];
 					}
-				
+
 			}
 		}
-    
+
 		function moveElementRight(element) {
 			var currLeft = element.style.left;
 			var numLeft = parseFloat(currLeft, 10);
 			return numLeft - 142.5;
 		}
-    
+
 		function moveElementLeft(element) {
 			var currLeft = element.style.left;
 			var numLeft = parseFloat(currLeft, 10);
