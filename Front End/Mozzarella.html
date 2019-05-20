@@ -111,7 +111,8 @@
 				'Y': characterPositionRelativeToArenaY,
 				'Isdead': false,
 				'pic': CharImgLinkPNG,
-        'gif': CharImgLinkGIF,
+                                'gif': CharImgLinkGIF,
+                                'timeoffset': 0
 			};
 			client.post('http://104.236.169.62:8000/mozz/gridsend', wrappedObj, function(response) {
 				client.get('http://104.236.169.62:8000/mozz/gridrecive/5', function(response) {
