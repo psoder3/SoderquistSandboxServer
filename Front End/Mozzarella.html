@@ -147,6 +147,7 @@
         						}
         						for (var i = 0; i < deeplistofcheese.length; i++) {
         							if (!listofid.includes(deeplistofcheese[i].Id)) {
+									console.log(deeplistofcheese[i]);
         								var deletething = document.getElementById(deeplistofcheese[i].Id);
         								deletething.parentNode.removeChild(deletething);
         							}
@@ -192,6 +193,11 @@
 								//charDiv.style.top = (person.Y) - characterPositionRelativeToArenaY;
 								charDiv.style.zIndex = 2;
 							}
+						}else{
+						character.style.width = person.Size + "px";
+						character.style.height = person.Size + "px";
+						CharImg.style.width = person.Size + "px";
+						CharImg.style.height = person.Size + "px";	
 						}
 					}
           //creating Cheese
@@ -203,7 +209,7 @@
 							if ((charwindowX > -200 && charwindowX < window.innerWidth + 200) &&
 								(charwindowY > -200 && charwindowY < window.innerHeight + 200)
 							) {
-                console.log(person);
+               
 								var CheeseDiv = document.getElementById(person.Id);
 								if (CheeseDiv == undefined || CheeseDiv == null) {
 									CheeseDiv = document.createElement('img');
