@@ -227,7 +227,7 @@ app.post('/mozz/gridsend', function(req,res) {
 
         }
 	for(var i = 0; Listofcheese.length < 100; i++){
-		var RandomX = Math.floor((Math.random() * 2000)) - 1000
+		var RandomX = Math.floor((Math.random() * 2000)) - 1150
 		var RandomY = Math.floor((Math.random() * 2000)) - 1000
 		var randomcheese = Math.floor((Math.random() * cheeseImglist.length));
 	   	var cheeseobj = {
