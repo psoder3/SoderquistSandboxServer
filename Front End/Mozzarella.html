@@ -170,10 +170,8 @@
 						}
 					}
           //creating local people imgs stuff
-						character.style.width = person.Size + "px";
-						character.style.height = person.Size + "px";
-						CharImg.style.width = person.Size + "px";
-						CharImg.style.height = person.Size + "px";	
+					
+	
 					for (var i = 0; i < Listofpeople.length; i++) {
 						var person = Listofpeople[i];
 						if (MyId != person.Id) {
@@ -198,7 +196,11 @@
 								charDiv.style.zIndex = 2;
 							}
 						}else{
-						
+							console.log("Found person");
+						character.style.width = person.Size + "px";
+						character.style.height = person.Size + "px";
+						CharImg.style.width = person.Size + "px";
+						CharImg.style.height = person.Size + "px";
 						}
 					}
           //creating Cheese
