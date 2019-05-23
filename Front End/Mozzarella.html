@@ -103,7 +103,7 @@
 			//Pulling code
 			var client = new HttpClient();
 			var time = Date.now();
-			SizeOfCharacterInPX = character.style.width.split("px")[0];
+			SizeOfCharacterInPX = Number(character.style.width.split("px")[0]);
 			var wrappedObj = {
 				'Id': MyId,
 				'TimeStamp': time,
