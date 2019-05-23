@@ -131,8 +131,12 @@
         						}
         						for (var i = 0; i < deeplistofpeople.length; i++) {
         							if (!listofid.includes(deeplistofpeople[i].Id)) {
+									if(deeplistofpeople[i].Id == MyId){
+									    location.reload();
+									   }else{
         								var deletething = document.getElementById(deeplistofpeople[i].Id);
         								deletething.parentNode.removeChild(deletething);
+									   }
         							}
         						}
         					}
@@ -192,8 +196,8 @@
 								charDiv.style.position = "absolute";
 								charDiv.id = (person.Id);
 								charDiv.src = person.pic;
-								charDiv.style.width = SizeOfCharacterInPX + "px";
-								charDiv.style.height = SizeOfCharacterInPX + "px";
+								charDiv.style.width = person.size + "px";
+								charDiv.style.height = person.size + "px";
 								charDiv.style.left = (charwindowX - (charDiv.width / 2)) + "px";
 								charDiv.style.top = (charwindowY - (charDiv.height / 2)) + "px";
 								//charDiv.style.top = (person.Y) - characterPositionRelativeToArenaY;
