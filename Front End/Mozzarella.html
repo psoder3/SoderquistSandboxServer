@@ -91,10 +91,10 @@
 					}
 				}
 				character.style.position = "absolute";
-				character.style.width = SizeOfCharacterInPX + "px";
-				character.style.height = SizeOfCharacterInPX + "px";
-				CharImg.style.width = SizeOfCharacterInPX + "px";
-				CharImg.style.height = SizeOfCharacterInPX + "px";
+				character.style.width = SizeOfCharacterInPX;
+				character.style.height = SizeOfCharacterInPX;
+				CharImg.style.width = SizeOfCharacterInPX;
+				CharImg.style.height = SizeOfCharacterInPX;
 				CharImg.src = CharImgLinkPNG;
 				UpdateandCallsever();
 			}
@@ -103,6 +103,7 @@
 			//Pulling code
 			var client = new HttpClient();
 			var time = Date.now();
+			SizeOfCharacterInPX = character.style.width.split("px")[0];
 			var wrappedObj = {
 				'Id': MyId,
 				'TimeStamp': time,
@@ -122,7 +123,8 @@
         						deeplistofpeople = JSON.parse(JSON.stringify(Listofpeople));
         					}
         					Listofpeople = Mycallback['Listofchange'];
-        					if (deeplistofpeople.length > Listofpeople.length) {
+
+        					if (deeplistofpeople.length >= Listofpeople.length) {
         						var listofid = [];
         						for (var i = 0; i < Listofpeople.length; i++) {
         							listofid.push(Listofpeople[i].Id);
@@ -135,19 +137,21 @@
         						}
         					}
 
-                  //deleting cheese from client
-                  if (Listofcheese != undefined || Listofcheese != null) {
+						    //deleting cheese from client
+						    if (Listofcheese != undefined || Listofcheese != null) {
         						deeplistofcheese = JSON.parse(JSON.stringify(Listofcheese));
         					}
         					Listofcheese = Mycallback['Cheeselist'];
-        					if (deeplistofcheese.length > Listofcheese.length) {
+							console.log(deeplistofcheese.length)
+									
+        					if (deeplistofcheese.length >= Listofcheese.length) {
         						var listofid = [];
         						for (var i = 0; i < Listofcheese.length; i++){
         							listofid.push(Listofcheese[i].Id);
         						}
         						for (var i = 0; i < deeplistofcheese.length; i++) {
         							if (!listofid.includes(deeplistofcheese[i].Id)) {
-									console.log(deeplistofcheese[i]);
+										console.log(deeplistofcheese[i]);
         								var deletething = document.getElementById(deeplistofcheese[i].Id);
         								deletething.parentNode.removeChild(deletething);
         							}
@@ -196,7 +200,7 @@
 								charDiv.style.zIndex = 2;
 							}
 						}else{
-							console.log("Found person");
+							//console.log(person.Size);
 						character.style.width = person.Size + "px";
 						character.style.height = person.Size + "px";
 						CharImg.style.width = person.Size + "px";
@@ -205,6 +209,7 @@
 					}
           //creating Cheese
           for (var i = 0; i < Listofcheese.length; i++) {
+						//console.log(Listofcheese)
 						var person = Listofcheese[i];
 
 							var charwindowX = window.innerWidth / 2 + ((person.X) - characterPositionRelativeToArenaX);
